@@ -9,4 +9,4 @@ A custom GPG-signed APT package repository for Termux providing pre-compiled nat
 Run this single command in Termux to download and execute `install.sh`:
 
 ```bash
-curl -fsSL https://ayobro-hash.github.io/python-websockify/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ayobro-hash/python-websockify/refs/heads/main/install.sh | bash

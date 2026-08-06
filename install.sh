@@ -1,7 +1,7 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
-REPO_URL="https://ayobro-hash.github.com/python-websockify"
+REPO_URL="https://github.com/ayobro-hash/python-websockify"
 
 echo "=========================================="
 echo " Setting up Custom Termux APT Repository"

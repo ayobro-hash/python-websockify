@@ -1,7 +1,14 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
-REPO_URL="https://github.com/ayobro-hash/python-websockify"
+# Replace with your actual GitHub username
+USERNAME="ayobro-hash"
+
+# Raw GitHub URL for key & installer files
+RAW_URL="https://raw.githubusercontent.com/${USERNAME}/python-websockify/main"
+
+# GitHub Pages URL for APT package downloads
+REPO_URL="https://${USERNAME}.github.io/python-websockify"
 
 echo "=========================================="
 echo " Setting up Custom Termux APT Repository"
@@ -11,9 +18,10 @@ echo "=========================================="
 echo "[+] Checking required tools (curl, gnupg)..."
 pkg install -y curl gnupg
 
-# 2. Download and trust public GPG key
+# 2. Download public GPG key directly from raw GitHub
 echo "[+] Adding GPG verification key..."
-curl -fsSL "$REPO_URL/KEY.gpg" | gpg --dearmor -o $PREFIX/etc/apt/trusted.gpg.d/custom-repo.gpg
+mkdir -p $PREFIX/etc/apt/trusted.gpg.d
+curl -fsSL "$RAW_URL/KEY.gpg" | gpg --batch --yes --dearmor -o $PREFIX/etc/apt/trusted.gpg.d/custom-repo.gpg
 
 # 3. Add repository source list
 echo "[+] Adding repository source list..."

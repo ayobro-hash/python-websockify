@@ -1,39 +1,26 @@
 #!/data/data/com.termux/files/usr/bin/bash
 set -e
 
-# Replace with your actual GitHub username
 USERNAME="ayobro-hash"
+REPO="python-websockify"
+DEB_NAME="python-websockify_0.8.0_aarch64.deb"
 
-# Raw GitHub URL for key & installer files
-RAW_URL="https://raw.githubusercontent.com/${USERNAME}/python-websockify/main"
-
-# GitHub Pages URL for APT package downloads
-REPO_URL="https://github.com/ayobro-hash/python-websockify"
+# Permanent download URL pointing to the latest release asset
+DOWNLOAD_URL="https://github.com/${USERNAME}/${REPO}/releases/latest/download/${DEB_NAME}"
 
 echo "=========================================="
-echo " Setting up Custom Termux APT Repository"
+echo " Installing python-websockify"
 echo "=========================================="
 
-# 1. Install required packages
-echo "[+] Checking required tools (curl, gnupg)..."
-pkg install -y curl gnupg
+# -L is required because GitHub redirects release downloads to AWS CDN
+echo "[+] Downloading package from GitHub Releases..."
+curl -fsSL -L -O "$DOWNLOAD_URL"
 
-# 2. Download public GPG key directly from raw GitHub
-echo "[+] Adding GPG verification key..."
-mkdir -p $PREFIX/etc/apt/trusted.gpg.d
-curl -fsSL "$RAW_URL/KEY.gpg" | gpg --batch --yes --dearmor -o $PREFIX/etc/apt/trusted.gpg.d/custom-repo.gpg
+echo "[+] Installing package..."
+pkg install -y ./"$DEB_NAME"
 
-# 3. Add repository source list
-echo "[+] Adding repository source list..."
-mkdir -p $PREFIX/etc/apt/sources.list.d
-echo "deb $REPO_URL ./" > $PREFIX/etc/apt/sources.list.d/custom-repo.list
-
-# 4. Update package lists and install python-websockify
-echo "[+] Updating APT packages..."
-pkg update -y
-
-echo "[+] Installing python-websockify..."
-pkg install -y python-websockify
+echo "[+] Cleaning up installer file..."
+rm -f ./"$DEB_NAME"
 
 echo ""
 echo "=========================================="

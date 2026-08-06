@@ -1,0 +1,25 @@
+# Build & Staging Directories
+pkg_websockify/
+repo_pkg/
+build/
+*.tmp
+*.bak
+
+# Debian Build Artifacts
+*.buildinfo
+*.changes
+*.dsc
+
+# Editor & OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# Secret Keys (Prevent accidental private key leaks)
+*.sec
+*.key
+*.pem
+private.gpg

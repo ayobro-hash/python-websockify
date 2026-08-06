@@ -3,7 +3,7 @@ set -e
 
 USERNAME="ayobro-hash"
 REPO="python-websockify"
-REPO_URL="https://${USERNAME}.github.io/${REPO}"
+REPO_URL="https://github.com/ayobro-hash/python-websockify"
 RAW_URL="https://raw.githubusercontent.com/${USERNAME}/${REPO}/main"
 
 echo "=========================================="

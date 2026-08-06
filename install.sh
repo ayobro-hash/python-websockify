@@ -8,7 +8,7 @@ USERNAME="ayobro-hash"
 RAW_URL="https://raw.githubusercontent.com/${USERNAME}/python-websockify/main"
 
 # GitHub Pages URL for APT package downloads
-REPO_URL="https://${USERNAME}.github.io/python-websockify"
+REPO_URL="https://github.com/ayobro-hash/python-websockify"
 
 echo "=========================================="
 echo " Setting up Custom Termux APT Repository"
